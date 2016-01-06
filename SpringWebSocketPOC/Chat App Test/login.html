@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="./jquery-2.1.4.min.js"></script>
+
+<script>
+var getJSON = function(url, successHandler, errorHandler) {
+  var xhr = typeof XMLHttpRequest != 'undefined'
+    ? new XMLHttpRequest()
+    : new ActiveXObject('Microsoft.XMLHTTP');
+  xhr.open('post', url, true);
+  xhr.onreadystatechange = function() {
+    var status;
+    var data;
+    // https://xhr.spec.whatwg.org/#dom-xmlhttprequest-readystate
+    if (xhr.readyState == 4) { // `DONE`
+      status = xhr.status;
+      if (status == 200) {
+	    data = JSON.parse(xhr.responseText);
+        successHandler && successHandler(data);
+      } else {
+        errorHandler && errorHandler(status);
+      }
+    }
+  };
+  var parameters={"username" :"chan1.aw1" };
+  xhr.send(JSON.stringify(parameters));
+};
+
+getJSON('http://localhost:8080/api/login', function(data) {
+   
+    var myTable= "<table ><tr><td style='width: 100px; color: red;'>First Name</td>";
+    myTable+= "<td style='width: 100px; color: red; text-align: right;'>Last Name</td>";
+    myTable+="<td style='width: 100px; color: red; text-align: right;'>User Name</td></tr>";
+
+    myTable+="<tr><td style='width: 100px;                   '>---------------</td>";
+    myTable+="<td     style='width: 100px; text-align: right;'>---------------</td>";
+    myTable+="<td     style='width: 120px; text-align: right;'>---------------</td></tr>";
+
+  for (var i=0; i<data.length; i++) {
+    myTable+="<tr><td style='width: 100px;'> " + data[i].firstname + " </td>";
+    myTable+="<td style='width: 100px; text-align: right;'>" + data[i].lastname + "</td>";
+    myTable+="<td style='width: 100px; text-align: right;'>" + data[i].username + "</td></tr>";
+  }  
+   myTable+="</table>";
+
+ document.getElementById('tablePrint').innerHTML = myTable;
+ 
+}, function(status) {
+  alert('Something went wrong.');
+});
+</script>
+</head>
+<body>
+<br>
+<br>
+<center><h2>Logged In User Details</h2></center>
+<br>
+<center>
+<table><tr><td>User Name </td><td><intput type="text" id="txtUserId"></td><td></td></tr></table>
+</center>
+<br>
+<center><div id="tablePrint"> </div></center>
+</body>
+</html>
