@@ -1,14 +1,10 @@
 package api.chat.nihilent.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.text.html.FormSubmitEvent.MethodType;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,7 +19,6 @@ import api.chat.nihilent.model.Login;
 import api.chat.nihilent.model.Registration;
 import api.chat.nihilent.model.RegistrationDetail;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -62,7 +56,6 @@ public class RegistrationController {
 		Login userName = new Login();
 		ObjectMapper mapper = new ObjectMapper();
 		userName = mapper.readValue(loginIdJson, Login.class);
-	 
 		List<Registration> registrationList = RegistrationDetail.getRegistration();
 		Iterator<Registration> itr=registrationList.iterator();
 		while(itr.hasNext()){

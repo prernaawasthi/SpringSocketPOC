@@ -1,4 +1,4 @@
-package api.chat.nihilent.model;
+package api.chat.nihilent.dto;
 
 public class Greeting {
     
