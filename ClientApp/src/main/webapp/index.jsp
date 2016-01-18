@@ -23,7 +23,7 @@
 	}
 
 	function connect() {
-		var socket = new SockJS('http://localhost:8080/hello');
+		var socket = new SockJS('http://r901m7gt:8580/hello');
 		stompClient = Stomp.over(socket);
 		stompClient.connect({'Access-Control-Allow-Origin':'*'}, function(frame) {
 			setConnected(true);

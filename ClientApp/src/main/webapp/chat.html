@@ -15,7 +15,7 @@
         var stompClient = null;
  
         function connect() {
-            var socket = new SockJS('http://localhost:8080/newMessage');
+            var socket = new SockJS('http://r901m7gt:8580/newMessage');
             stompClient = Stomp.over(socket);
             stompClient.connect({'Access-Control-Allow-Origin':'*'}, function(frame) {
                 stompClient.subscribe('/topic/newMessage', function(message){
@@ -49,9 +49,9 @@
                 connect();
                 
                 $.ajax({
-                    url: 'http://localhost:8080/messages',
+                    url: 'http://r901m7gt:8580/messages',
                     type: 'GET',
-                    success: function(messages) { refreshMessages(JSON.parse(messages.body)); }
+                    success: function(messages) { refreshMessages(messages.body); }
                  });
  
                 $("#sendMessage").on("click", function() {

@@ -36,7 +36,7 @@
                 		  xhr.send(JSON.stringify(parameters));
                 		};
 
-                		getJSON('http://localhost:8080/register', function(data) {
+                		getJSON('http://r901m7gt:8580/register', function(data) {
                 		    event.preventDefault();
                 		    if ($("#nickname").val() !== '') {
                 		        $.cookie("realtime-chat-nickname", $("#nickname").val());

@@ -62,7 +62,6 @@ public class ChatMessageController {
 	}
 
 	@RequestMapping(value = "/messages", method = RequestMethod.GET)
-	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
 	public ChatMessage list(HttpServletResponse  response) {
 		System.out.println("Inside list method *********");
